@@ -4,6 +4,10 @@ This RESTful API serves the Everyday Heroes App.
 
 Repository for the front-end web app is [here](https://github.com/broadwaycodez/everyday-heroes-web)
 
+## What is Everyday Heroes?
+
+Everyday Heroes uses the vocabulary of online gaming in order to encourage users to improve their lives and the community around them. Users complete quests, gain experience points, and level up over time by practicing the daily habits outlined in the program. Your progress through the program is measured by the practice of <b>Five Heroic Habits: Focus, Power, Balance, Treasure, and Tribe</b>. Each day, users are assigned small, actionable tasks which improve your ability in each of the heroic habits. Our goal is to improve the world by beginning with ourselves. We can be better husbands, wives, and parents. We can be more productive employees. We can contribute more to our communities. We can take better care of our bodies. We can allow space for our own mental well-being. All of these things are possible! By taking small, measurable actions every day, we will--in time--become the heroes we were meant to be. 
+
 ## Development
 
 This project was built using Ruby on Rails to create a RESTful API, utilizing bcrypt and JSON Web Token for secure user authentication.
