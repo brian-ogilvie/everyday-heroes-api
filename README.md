@@ -55,8 +55,7 @@ A Heroic Habit has many Daily Tasks</p>
 
 </details>
 
-
-
-
-
-
+<details>
+	<summary>Priority Matrix</summary>
+	<img src="https://res.cloudinary.com/brian-ogilvie/image/upload/v1551201229/Everyday%20Heroes/priority_matrix.jpg" alt="priority matrix">
+</details>
