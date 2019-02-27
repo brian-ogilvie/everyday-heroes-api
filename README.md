@@ -59,3 +59,9 @@ A Heroic Habit has many Daily Tasks</p>
 	<summary>Priority Matrix</summary>
 	<img src="https://res.cloudinary.com/brian-ogilvie/image/upload/v1551201229/Everyday%20Heroes/priority_matrix.jpg" alt="priority matrix">
 </details>
+
+## Aknowledgements
+
+Lean JSON responses based on [this tutorial](https://quickleft.com/blog/keeping-your-json-response-lean-in-rails/) by Collin Schaafsma.
+
+Secure user authentication for a stateless (RESTful) API based on [this tutorial](https://www.pluralsight.com/guides/token-based-authentication-with-ruby-on-rails-5-api) by Hristo Georgiev 
