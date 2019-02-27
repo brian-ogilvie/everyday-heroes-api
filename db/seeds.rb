@@ -227,6 +227,29 @@ Level0Point.create([
 ])
 
 User.create([
-  {first_name: 'Brian', last_name: 'Ogilvie', email: 'brian@nowhere.com', password_digest: '12345678', screen_name: 'Gormal', level_id: 1},
-  {first_name: 'Xander', last_name: 'Chauncey', email: 'brian@nowhere.com', password_digest: '12345678', screen_name: 'Icaro', level_id: 1},
+  {created_at: (Date.today - 30.5), first_name: 'Brian', last_name: 'Ogilvie', email: 'brian@nowhere.com', password_digest: '12345678', screen_name: 'Gormal', level_id: 1},
+  {created_at: (Date.today - 15), first_name: 'Xander', last_name: 'Chauncey', email: 'xander@nowhere.com', password_digest: '12345678', screen_name: 'Icaro', level_id: 1},
+  {created_at: (Date.today - 2), first_name: 'Dana', last_name: 'Ogilvie', email: 'dana@nowhere.com', password_digest: '12345678', screen_name: 'Artemis', level_id: 1},
 ])
+
+def create_assignments
+  users = User.all
+  today = Date.today
+  users.each do |user|
+    days_active = ([today - user[:created_at].to_s.to_date, 30].min).to_s.split('/')[0].to_i
+    (1...days_active).each do | day |
+      (1..5).each do | habit |
+        complete = rand(3) == 1 ? false : true
+        if complete
+          created_at = (today - (30 - day)).to_s
+          element_id = rand(5)
+          task = DailyTask.where({heroic_habit_id: habit, element: element_id}).first
+          new_assignment = {user_id: user[:id], created_at: created_at, complete: complete, daily_task_id: task[:id]}
+          Assignment.create(new_assignment)
+        end
+      end
+    end
+  end
+end
+
+create_assignments
