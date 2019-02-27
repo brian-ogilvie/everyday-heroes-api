@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
   def today
-    # completed = Assignment.where({user_id: current_user[:id], created_at: (Time.now.midnight..Time.now)})
     completed = (Assignment.joins(:daily_task)
       .select("daily_tasks.heroic_habit_id")
       .where(
@@ -16,7 +15,8 @@ class TasksController < ApplicationController
       habit = HeroicHabit.find(habit_id)[:name]
       complete = completed_habits.include?(habit_id) ? true : false
       today_tasks.push({
-        habit: habit,
+        habit_name: habit,
+        habit_id: habit_id,
         complete: complete
       })
     end
@@ -24,6 +24,13 @@ class TasksController < ApplicationController
   end
 
   def tasks_for_habit
-    DailyTask.joins(:heroic_habit).where(daily_tasks: {level_id: current_user[:level_id]}, heroic_habits: {id: params[:id]})
+    habit = HeroicHabit.find(params[:habit_id])
+    habit_tasks = DailyTask
+      .select("daily_tasks.id, daily_tasks.element, daily_tasks.title, daily_tasks.description")
+      .where(daily_tasks: {level_id: current_user[:level_id], heroic_habit_id: params[:habit_id]})
+    render json: {
+      habit: {id: habit[:id], name: habit[:name]},
+      tasks: habit_tasks
+    }
   end
 end
