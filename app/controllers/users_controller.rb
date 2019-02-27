@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   def index
     render json: {
       message: 'Welcome to the users area!',
-      current_user: current_user
     }
   end
 
@@ -12,7 +11,11 @@ class UsersController < ApplicationController
     begin
       user = User.find(params[:id])
       is_current = is_current_user?(user)
-      render json: {user: user.as_json(:only => [:id, :name, :created_at]), is_current_user: is_current}, status: 200
+      if is_current
+        render json: {user: user.as_json(:only => [:id, :screen_name, :first_name, :last_name, :level_id, :email, :created_at]), is_current_user: true}, status: 200
+      else
+        render json: {user: user.as_json(:only => [:id, :screen_name, :level_id, :created_at]), is_current_user: false}, status: 200
+      end
     rescue ActiveRecord::RecordNotFound
       not_found
     rescue Exception
