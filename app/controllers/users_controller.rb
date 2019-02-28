@@ -33,6 +33,28 @@ class UsersController < ApplicationController
     end
   end
 
+  def progress
+    begin
+      user = User.find(params[:id])
+      level = user.level
+      habit_points = level[:habit_points]
+      completions = user.assignments.joins(:daily_task).where(daily_tasks: {level_id: user[:level_id]}).group("daily_tasks.heroic_habit_id").count()
+      point_totals = []
+      completions.each do | key, value |
+        this_habit = {
+          habit_id: key,
+          habit: HeroicHabit.find(key)[:name],
+          earned: value * habit_points,
+          required: level[:num] != 1 ? level[:required_points] : Level0Point.find(key)[:points]
+        }
+        point_totals.push(this_habit)
+      end
+      render json: {points: point_totals}, status: 200
+    rescue ActiveRecord::RecordNotFound
+      not_found
+    end
+  end
+
   private
 
   def user_params
