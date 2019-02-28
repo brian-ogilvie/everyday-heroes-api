@@ -227,9 +227,9 @@ Level0Point.create([
 ])
 
 User.create([
-  {created_at: (Date.today - 30.5), first_name: 'Brian', last_name: 'Ogilvie', email: 'brian@nowhere.com', password_digest: '12345678', screen_name: 'Gormal', level_id: 1},
-  {created_at: (Date.today - 15), first_name: 'Xander', last_name: 'Chauncey', email: 'xander@nowhere.com', password_digest: '12345678', screen_name: 'Icaro', level_id: 1},
-  {created_at: (Date.today - 2), first_name: 'Dana', last_name: 'Ogilvie', email: 'dana@nowhere.com', password_digest: '12345678', screen_name: 'Artemis', level_id: 1},
+  {created_at: (Date.today - 30.5), first_name: 'Brian', last_name: 'Ogilvie', email: 'brian@nowhere.com', password: '12345678', password_confirmation: '12345678', screen_name: 'Gormal', level_id: 1},
+  {created_at: (Date.today - 15), first_name: 'Xander', last_name: 'Chauncey', email: 'xander@nowhere.com', password: '12345678', password_confirmation: '12345678', screen_name: 'Icaro', level_id: 1},
+  {created_at: (Date.today - 2), first_name: 'Dana', last_name: 'Ogilvie', email: 'dana@nowhere.com', password: '12345678', password_confirmation: '12345678', screen_name: 'Artemis', level_id: 1},
 ])
 
 def create_assignments
@@ -244,8 +244,8 @@ def create_assignments
           created_at = (today - (30 - day)).to_s
           element_id = rand(5)
           task = DailyTask.where({heroic_habit_id: habit, element: element_id}).first
-          new_assignment = {user_id: user[:id], created_at: created_at, complete: complete, daily_task_id: task[:id]}
-          Assignment.create(new_assignment)
+          new_assignment = {user_id: user[:id], created_at: created_at, daily_task_id: task[:id]}
+          assignment = Assignment.create(new_assignment)
         end
       end
     end

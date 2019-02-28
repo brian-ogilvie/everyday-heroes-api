@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_26_215336) do
+ActiveRecord::Schema.define(version: 2019_02_28_020422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "assignments", force: :cascade do |t|
-    t.boolean "complete"
     t.bigint "user_id"
     t.bigint "daily_task_id"
     t.datetime "created_at", null: false
