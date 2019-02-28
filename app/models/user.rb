@@ -12,6 +12,11 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 8 }, confirmation: { case_sensitive: true }
   validates :password_confirmation, presence: true
 
+  def days_active
+    # (Date.today - self[:created_at].to_s.to_date).to_s.split('/')[0].to_i + 1
+    ((Time.now - self[:created_at])/1.day).ceil
+  end
+
   def as_json(options = {})
     super(:only => options[:only] || [:id, :first_name, :last_name, :screen_name, :email, :level_id, :created_at])
   end
