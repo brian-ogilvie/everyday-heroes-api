@@ -9,8 +9,8 @@ class User < ApplicationRecord
   has_many :daily_tasks, through: :assignments
 
   has_secure_password
-  validates :password, presence: true, length: { minimum: 8 }, confirmation: { case_sensitive: true }
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, length: { minimum: 8 }, confirmation: { case_sensitive: true }, on: :create
+  validates :password_confirmation, presence: true, on: :create
 
   def days_active
     # (Date.today - self[:created_at].to_s.to_date).to_s.split('/')[0].to_i + 1

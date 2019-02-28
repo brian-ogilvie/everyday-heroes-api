@@ -33,6 +33,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    begin
+      if params[:id].to_i == current_user[:id].to_i
+        user = current_user
+        user.update(update_user_params)
+        if user.save
+          render json: {user: user.as_json}, status: 200
+        else
+          render json: {errors: user.errors.full_messages}, status: 400
+        end
+      else
+        render json: {error: 'Unauthorized'}, status: 401
+      end
+    rescue ActiveRecord::RecordNotFound
+      not_found
+    rescue Exception
+      server_error
+    end
+  end
+
   def destroy
     if params[:id].to_i == current_user[:id].to_i
       User.destroy(params[:id])
@@ -68,6 +88,14 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :screen_name, :password, :password_confirmation)
+  end
+
+  def update_user_params
+    update_user_params = user_params
+    update_user_params.delete(:password)
+    update_user_params.delete(:password_confirmation)
+    puts update_user_params
+    update_user_params
   end
 
   def not_found
