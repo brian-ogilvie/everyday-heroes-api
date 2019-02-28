@@ -33,6 +33,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    if params[:id].to_i == current_user[:id].to_i
+      User.destroy(params[:id])
+      render json: {message: "Your account has been deleted."}
+    else
+      render json: {error: 'Unauthorized'}, status: 401
+    end
+  end
+
   def progress
     begin
       user = User.find(params[:id])

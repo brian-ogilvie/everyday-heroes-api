@@ -5,7 +5,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 }, uniqueness: true
   
   belongs_to :level
-  has_many :assignments
+  has_many :assignments, dependent: :delete_all
   has_many :daily_tasks, through: :assignments
 
   has_secure_password
