@@ -6,12 +6,12 @@ class AssignmentsController < ApplicationController
       if assignment.save
         render json: {completed_assignment: assignment}, status: 201
       else 
-        render json: {error: assignment.errors.full_messages}, status: 400
+        render json: {errors: assignment.errors.full_messages}, status: 400
       end
     rescue ActiveRecord::RecordNotFound
-      render json: {error: "No task found with that id."}, status: 404
+      render json: {errors: ["No task found with that id."]}, status: 404
     rescue Exception
-      render json: {error: "Internal Server Error"}, status: 500
+      render json: {errors: ["Internal Server Error"]}, status: 500
     end
   end
 
