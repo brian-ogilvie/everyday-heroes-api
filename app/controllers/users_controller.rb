@@ -78,7 +78,7 @@ class UsersController < ApplicationController
         }
         point_totals.push(this_habit)
       end
-      render json: {points: point_totals}, status: 200
+      render json: {level_num: user.level[:num], points: point_totals}, status: 200
     rescue ActiveRecord::RecordNotFound
       not_found
     end
