@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_03_042902) do
+ActiveRecord::Schema.define(version: 2019_03_03_054059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,11 +37,12 @@ ActiveRecord::Schema.define(version: 2019_03_03_042902) do
   create_table "challenges", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.integer "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "level_id"
     t.integer "intro_day"
+    t.integer "category"
+    t.string "url"
     t.index ["level_id"], name: "index_challenges_on_level_id"
   end
 
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 2019_03_03_042902) do
     t.datetime "updated_at", null: false
     t.bigint "level_id"
     t.bigint "heroic_habit_id"
+    t.string "url"
     t.index ["heroic_habit_id"], name: "index_daily_tasks_on_heroic_habit_id"
     t.index ["level_id"], name: "index_daily_tasks_on_level_id"
   end
@@ -62,6 +64,7 @@ ActiveRecord::Schema.define(version: 2019_03_03_042902) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "intro_day"
+    t.string "url"
   end
 
   create_table "level0_points", force: :cascade do |t|

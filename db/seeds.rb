@@ -8,8 +8,8 @@
 Level.create({num: 1, required_points: 0, habit_points: 10})
 
 HeroicHabit.create([
-  {name: HeroicHabit.names[:power], intro_day: 1},
-  {name: HeroicHabit.names[:balance], intro_day: 17},
+  {name: HeroicHabit.names[:power], intro_day: 3},
+  {name: HeroicHabit.names[:balance], intro_day: 17, url: "https://youtu.be/jGX2AbZ3HQc"},
   {name: HeroicHabit.names[:focus], intro_day: 10},
   {name: HeroicHabit.names[:treasure], intro_day: 19},
   {name: HeroicHabit.names[:tribe], intro_day: 26},
@@ -77,7 +77,7 @@ DailyTask.create([
     element: DailyTask.elements[:water], 
     level_id: 1, 
     title: "Holosync Meditation", 
-    description: "Complete the 30 minute Dive. This powerful technology provides you the benefits of deep meditation automatically, every time." 
+    description: "Complete the 30 minute Dive. This powerful technology provides you the benefits of deep meditation automatically, every time."
   },
   {
     heroic_habit_id: 3, 
@@ -200,6 +200,21 @@ Level0Point.create([
   {heroic_habit_id: 3, points: 260},
   {heroic_habit_id: 4, points: 170},
   {heroic_habit_id: 5, points: 50},
+])
+
+Challenge.create([
+  {level_id: 1, intro_day: 1, category: Challenge.categories[:required], title: "Why?", description: "Welcome, hero! We are so excited that you have chosen to take this journey of self improvement with us. Your first assignment is simply to consider your \"Why.\" Your Why is at the center of everything you do. Maybe you want to be the best father you can be. Maybe you want to revolutionize the computer industry. Whatever it is, it will inform what you do. It will inform who you bring into your life. It will inform how you operate everyday. Until you define your Why, your choices seem random, and this is a source of confusion and wasted energy for so many people. So figure this out. Write it down. Why do you want to be a hero?", url: "https://www.youtube.com/watch?v=HblkRJxOMvQ&feature=share"},
+  {level_id: 1, intro_day: 5, category: Challenge.categories[:bonus], title: "Bonus"},
+  {level_id: 1, intro_day: 12, category: Challenge.categories[:bonus], title: "Bonus 2", url: "https://www.youtube.com/watch?v=GAE00e7mnMI&feature=share"},
+  {level_id: 1, intro_day: 24, category: Challenge.categories[:bonus], title: "Bonus 3"},
+  {level_id: 1, intro_day: 31, category: Challenge.categories[:required], title: "Final Challenge", description: "Become an Everyday Hero!"},
+])
+
+ChallengeHabit.create([
+  {challenge_id: 2, heroic_habit_id: 1, points: 90},
+  {challenge_id: 3, heroic_habit_id: 3, points: 70},
+  {challenge_id: 4, heroic_habit_id: 2, points: 60},
+  {challenge_id: 4, heroic_habit_id: 4, points: 60},
 ])
 
 User.create([
