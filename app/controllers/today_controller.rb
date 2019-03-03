@@ -3,8 +3,8 @@ class TodayController < ApplicationController
     today_tasks = get_today_tasks
     today_challenges = get_today_challenges
     render json: {
-      today_tasks: today_tasks,
-      today_challenges: today_challenges
+      tasks: today_tasks,
+      challenges: today_challenges
     }
   end
 
