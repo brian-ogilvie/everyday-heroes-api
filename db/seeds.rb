@@ -91,105 +91,105 @@ DailyTask.create([
     element: DailyTask.elements[:fire], 
     level_id: 1, 
     title: "Foolish Love", 
-    description: "" 
+    description: "Do something today that will delight someone you love, especially if you find it embarrassing!" 
   },
   {
     heroic_habit_id: 2, 
     element: DailyTask.elements[:earth], 
     level_id: 1, 
     title: "Hearth Health", 
-    description: "" 
+    description: "Spend at least 30 minutes on a household project that you've been putting off." 
   },
   {
     heroic_habit_id: 2, 
     element: DailyTask.elements[:metal], 
     level_id: 1, 
     title: "Dark Scan", 
-    description: "" 
+    description: "Take five minutes to imagine the consequences of not completing your Life Missions. Allow yourself to truly feel the regret and guilt of failing. Now, rejoice! You have time." 
   },
   {
     heroic_habit_id: 2, 
     element: DailyTask.elements[:water], 
     level_id: 1, 
     title: "Soul Embrace", 
-    description: "" 
+    description: "Practice this technique with yourself or your significant other. (See instructions)" 
   },
   {
     heroic_habit_id: 2, 
     element: DailyTask.elements[:wood], 
     level_id: 1, 
     title: "Bless the Castle", 
-    description: "" 
+    description: "Smudge your home with sage and/or palo santo. Experience the psychological benefits of simple rituals" 
   },
   {
     heroic_habit_id: 4, 
     element: DailyTask.elements[:fire], 
     level_id: 1, 
     title: "Life Missions Level 2", 
-    description: "" 
+    description: "Examine your Life Missions. Determine what is the next step you can take toward accomplishing each. Choose the one Life Mission that is most important to you and define the next actionable goal. (i.e. Get In Great Shape: Do 10 Pull-Ups) Write the following on a piece of paper followed by your goal: \"I will use all of my powers to accomplish the following aim, ___________.\" Keep this piece of paper close and look at it every night right before you fall asleep and immediately after you wake." 
   },
   {
     heroic_habit_id: 4, 
     element: DailyTask.elements[:earth], 
     level_id: 1, 
     title: "Idea Machine", 
-    description: "" 
+    description: "Write down 10 ideas everyday--good, bad and meh. Build the habit of creative flow. Learn to not rely on fickle inspiration." 
   },
   {
     heroic_habit_id: 4, 
     element: DailyTask.elements[:metal], 
     level_id: 1, 
     title: "Perfect Practice", 
-    description: "" 
+    description: "30 Minute Chunks of focused skill training using the \"Three P’s\" • Program (5-10 Min)- find a system, master or teacher from which to learn your new skill. • Prctice (10-20 Min)- repeat the smallest actions and fundamentals until you no longer need to reference the Program. • Play (5-10 Min)- perform the skill with out judging yourself! Learn to safely wield the new skill with ease and control." 
   },
   {
     heroic_habit_id: 4, 
     element: DailyTask.elements[:water], 
     level_id: 1, 
     title: "Grease the Wheels", 
-    description: "" 
+    description: "Keep a daily list of 10 Reasons you are Grateful. Gratitude is the easiest emotion to choose and is the key to releasing toxic energies." 
   },
   {
     heroic_habit_id: 4, 
     element: DailyTask.elements[:wood], 
     level_id: 1, 
     title: "Tend the Roots", 
-    description: "" 
+    description: "Check your finances and maintain their health. This one is a no-brainer but also a rabbit hole. Check the EDH database for sample budgets and advice." 
   },
   {
     heroic_habit_id: 5, 
     element: DailyTask.elements[:fire], 
     level_id: 1, 
     title: "Volunteer Today", 
-    description: "" 
+    description: "Search for volunteer opportunities near you and offer your time." 
   },
   {
     heroic_habit_id: 5, 
     element: DailyTask.elements[:earth], 
     level_id: 1, 
     title: "Lean On Me", 
-    description: "" 
+    description: "Make your needs known to your Tribe. Promise to be there for them in whatever ways you can." 
   },
   {
     heroic_habit_id: 5, 
     element: DailyTask.elements[:metal], 
     level_id: 1, 
     title: "Response Ability", 
-    description: "" 
+    description: "Ask yourself: What skills and abilities do you currently have that world needs? Find a new way to be of service to your fellow human beings." 
   },
   {
     heroic_habit_id: 5, 
     element: DailyTask.elements[:water], 
     level_id: 1, 
     title: "Share Your Wisdom", 
-    description: "" 
+    description: "Upload a video or series of videos demonstrating something you’ve mastered or are working on. Teaching is one of the best ways to learn!" 
   },
   {
     heroic_habit_id: 5, 
     element: DailyTask.elements[:wood], 
     level_id: 1, 
     title: "Help a Stranger", 
-    description: "" 
+    description: "See something, DO SOMETHING. If not now, when? If not you, who?" 
   },
 ])
 
