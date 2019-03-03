@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_03_130630) do
+ActiveRecord::Schema.define(version: 2019_03_03_132333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 2019_03_03_130630) do
     t.index ["user_id"], name: "index_assignments_on_user_id"
   end
 
-  create_table "challenge_habits", force: :cascade do |t|
+  create_table "challenge_points", force: :cascade do |t|
     t.bigint "challenge_id"
     t.bigint "heroic_habit_id"
     t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["challenge_id"], name: "index_challenge_habits_on_challenge_id"
-    t.index ["heroic_habit_id"], name: "index_challenge_habits_on_heroic_habit_id"
+    t.index ["challenge_id"], name: "index_challenge_points_on_challenge_id"
+    t.index ["heroic_habit_id"], name: "index_challenge_points_on_heroic_habit_id"
   end
 
   create_table "challenges", force: :cascade do |t|

@@ -1,4 +1,4 @@
-class ChallengeHabit < ApplicationRecord
+class ChallengePoint < ApplicationRecord
   belongs_to :challenge
   belongs_to :heroic_habit
 
