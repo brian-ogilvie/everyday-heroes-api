@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get '/today/assignments/:habit_id', to: 'assignments#completed_assignment_by_habit'
   post '/assignments/', to: 'assignments#create'
 
-  get '/today', to: 'tasks#today'
+  get '/today', to: 'today#index'
+  
   get '/today/:habit_id', to: 'tasks#tasks_for_habit'
   get '/tasks/:id', to: 'tasks#show'
 
