@@ -140,7 +140,8 @@ DailyTask.create([
     element: DailyTask.elements[:metal], 
     level_id: 1, 
     title: "Perfect Practice", 
-    description: "30 Minute Chunks of focused skill training using the \"Three P’s\" • Program (5-10 Min)- find a system, master or teacher from which to learn your new skill. • Prctice (10-20 Min)- repeat the smallest actions and fundamentals until you no longer need to reference the Program. • Play (5-10 Min)- perform the skill with out judging yourself! Learn to safely wield the new skill with ease and control." 
+    # description: "30 Minute Chunks of focused skill training using the \"Three P’s\" • Program (5-10 Min)- find a system, master or teacher from which to learn your new skill. • Prctice (10-20 Min)- repeat the smallest actions and fundamentals until you no longer need to reference the Program. • Play (5-10 Min)- perform the skill with out judging yourself! Learn to safely wield the new skill with ease and control." 
+    description: "<p>30 Minute Chunks of focused skill training using the \"Three P’s\"</p><li>Program (5-10 Min) - find a system, master or teacher from which to learn your new skill.</li><li>Practice (10-20 Min) - repeat the smallest actions and fundamentals until you no longer need to reference the Program.</li><li>Play (5-10 Min) - perform the skill with out judging yourself! Learn to safely wield the new skill with ease and control.</li>" 
   },
   {
     heroic_habit_id: 4, 
