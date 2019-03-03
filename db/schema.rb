@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_03_054059) do
+ActiveRecord::Schema.define(version: 2019_03_03_130630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 2019_03_03_054059) do
     t.integer "category"
     t.string "url"
     t.index ["level_id"], name: "index_challenges_on_level_id"
+  end
+
+  create_table "complete_challenges", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "challenge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_complete_challenges_on_challenge_id"
+    t.index ["user_id"], name: "index_complete_challenges_on_user_id"
   end
 
   create_table "daily_tasks", force: :cascade do |t|
@@ -82,15 +91,6 @@ ActiveRecord::Schema.define(version: 2019_03_03_054059) do
     t.datetime "updated_at", null: false
     t.integer "num"
     t.index ["num"], name: "index_levels_on_num", unique: true
-  end
-
-  create_table "user_challenges", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "challenge_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["challenge_id"], name: "index_user_challenges_on_challenge_id"
-    t.index ["user_id"], name: "index_user_challenges_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -8,8 +8,8 @@ class User < ApplicationRecord
   has_many :assignments, dependent: :delete_all
   has_many :daily_tasks, through: :assignments
 
-  has_many :user_challenges, dependent: :delete_all
-  has_many :challenges, through: :user_challenges
+  has_many :complete_challenges, dependent: :delete_all
+  has_many :challenges, through: :complete_challenges
 
   has_secure_password
   validates :password, presence: true, length: { minimum: 8 }, confirmation: { case_sensitive: true }, on: :create

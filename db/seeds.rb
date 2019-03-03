@@ -223,6 +223,10 @@ User.create([
   {created_at: 2.days.ago, first_name: 'Dana', last_name: 'Ogilvie', email: 'dana@nowhere.com', password: '12345678', password_confirmation: '12345678', screen_name: 'Artemis', level_id: 1},
 ])
 
+CompleteChallenge.create([
+  {user_id: 1, challenge_id: 1},
+])
+
 def create_assignments
   users = User.all
   today = Date.today
