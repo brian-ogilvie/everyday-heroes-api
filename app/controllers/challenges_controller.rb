@@ -8,13 +8,14 @@ class ChallengesController < ApplicationController
         description: challenge[:description],
         category: challenge[:category],
         url: challenge[:url],
+        embed_url: challenge[:embed_url],
       }
       if challenge[:category] == 'bonus'
         challenge_points = ChallengePoint.where({challenge_id: challenge[:id]})
         bonus_points = []
         challenge_points.each do | entry |
           habit = HeroicHabit.find(entry[:heroic_habit_id])
-          bonus_points.push({habit: habit[:name], points: entry[:points]})
+          bonus_points.push({id: entry[:id], habit: habit[:name], points: entry[:points]})
         end
         challenge_hash[:bonus_points] = bonus_points
       end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_03_132333) do
+ActiveRecord::Schema.define(version: 2019_03_03_194508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_03_03_132333) do
     t.integer "intro_day"
     t.integer "category"
     t.string "url"
+    t.string "embed_url"
     t.index ["level_id"], name: "index_challenges_on_level_id"
   end
 
