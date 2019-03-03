@@ -1,0 +1,2 @@
+class ChallengeHabit < ApplicationRecord
+end

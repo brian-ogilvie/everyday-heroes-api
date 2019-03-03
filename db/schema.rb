@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_28_022912) do
+ActiveRecord::Schema.define(version: 2019_03_03_042902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,27 @@ ActiveRecord::Schema.define(version: 2019_02_28_022912) do
     t.datetime "updated_at", null: false
     t.index ["daily_task_id"], name: "index_assignments_on_daily_task_id"
     t.index ["user_id"], name: "index_assignments_on_user_id"
+  end
+
+  create_table "challenge_habits", force: :cascade do |t|
+    t.bigint "challenge_id"
+    t.bigint "heroic_habit_id"
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_challenge_habits_on_challenge_id"
+    t.index ["heroic_habit_id"], name: "index_challenge_habits_on_heroic_habit_id"
+  end
+
+  create_table "challenges", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "level_id"
+    t.integer "intro_day"
+    t.index ["level_id"], name: "index_challenges_on_level_id"
   end
 
   create_table "daily_tasks", force: :cascade do |t|
@@ -60,6 +81,15 @@ ActiveRecord::Schema.define(version: 2019_02_28_022912) do
     t.index ["num"], name: "index_levels_on_num", unique: true
   end
 
+  create_table "user_challenges", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "challenge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_user_challenges_on_challenge_id"
+    t.index ["user_id"], name: "index_user_challenges_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -74,6 +104,7 @@ ActiveRecord::Schema.define(version: 2019_02_28_022912) do
     t.index ["screen_name"], name: "index_users_on_screen_name", unique: true
   end
 
+  add_foreign_key "challenges", "levels"
   add_foreign_key "daily_tasks", "heroic_habits"
   add_foreign_key "daily_tasks", "levels"
   add_foreign_key "level0_points", "heroic_habits"
