@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root to: "root#index"
+
   get '/', to: 'application#index'
   
   get '/today/assignments/:habit_id', to: 'assignments#completed_assignment_by_habit'
