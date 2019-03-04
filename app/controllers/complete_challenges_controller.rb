@@ -7,7 +7,7 @@ class CompleteChallengesController < ApplicationController
     complete = CompleteChallenge.new(complete_challenge_params)
     complete[:user_id] = current_user[:id]
     if complete.save
-      render json: {completed_challenge: complete}, status: 201
+      render json: {completed: complete}, status: 201
     else
       render json: {errors: complete.errors.full_messages}, status: 401
     end

@@ -4,7 +4,7 @@ class AssignmentsController < ApplicationController
       assignment = Assignment.new(assignment_params)
       assignment[:user_id] = current_user[:id]
       if assignment.save
-        render json: {completed_assignment: assignment}, status: 201
+        render json: {completed: assignment}, status: 201
       else 
         render json: {errors: assignment.errors.full_messages}, status: 400
       end
