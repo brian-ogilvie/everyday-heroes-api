@@ -8,8 +8,6 @@ class AssignmentsController < ApplicationController
       else 
         render json: {errors: assignment.errors.full_messages}, status: 400
       end
-    rescue ActiveRecord::RecordNotFound
-      render json: {errors: ["No task found with that id."]}, status: 404
     rescue Exception
       render json: {errors: ["Internal Server Error"]}, status: 500
     end

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/tasks/:id', to: 'tasks#show'
 
   get '/challenges/:id', to: 'challenges#show'
+  post '/challenges/', to: 'complete_challenges#create'
 
   resources :users
   get '/users/:id/progress', to: 'users#progress'

@@ -2,6 +2,7 @@ class ChallengesController < ApplicationController
   def show
     begin
       challenge = Challenge.find(params[:id])
+      completed = CompleteChallenge.where({challenge_id: params[:id], user_id: current_user[:id]}).count > 0
       challenge_hash = {
         id: challenge[:id],
         level_id: challenge[:level_id],
@@ -10,6 +11,7 @@ class ChallengesController < ApplicationController
         category: challenge[:category],
         url: challenge[:url],
         embed_url: challenge[:embed_url],
+        completed: completed,
       }
       if challenge[:category] == 'bonus'
         challenge_points = ChallengePoint.where({challenge_id: challenge[:id]})
