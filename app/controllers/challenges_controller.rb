@@ -4,6 +4,7 @@ class ChallengesController < ApplicationController
       challenge = Challenge.find(params[:id])
       challenge_hash = {
         id: challenge[:id],
+        level_id: challenge[:level_id],
         title: challenge[:title],
         description: challenge[:description],
         category: challenge[:category],

@@ -66,26 +66,39 @@ class UsersController < ApplicationController
   def progress
     begin
       user = User.find(params[:id])
-      level = user.level
-      habit_points = level[:habit_points]
-      completions = user.assignments.joins(:daily_task).where(daily_tasks: {level_id: user[:level_id]}).group("daily_tasks.heroic_habit_id").count()
-      point_totals = []
-      completions.each do | key, value |
-        this_habit = {
-          habit_id: key,
-          habit: HeroicHabit.find(key)[:name],
-          earned: value * habit_points,
-          required: level[:num] != 1 ? level[:required_points] : Level0Point.find(key)[:points]
-        }
-        point_totals.push(this_habit)
-      end
-      render json: {level_num: user.level[:num], points: point_totals}, status: 200
+      point_totals = get_habit_point_totals(user)
+      challenge_totals = get_required_challenge_totals(user)
+
+      render json: {level_num: user.level[:num], points: point_totals, challenges: challenge_totals}, status: 200
     rescue ActiveRecord::RecordNotFound
       not_found
     end
   end
 
   private
+
+  def get_habit_point_totals(user)
+    level = user.level
+    habit_points = level[:habit_points]
+    completions = user.assignments.joins(:daily_task).where(daily_tasks: {level_id: user[:level_id]}).group("daily_tasks.heroic_habit_id").count()
+    point_totals = []
+    completions.each do | key, value |
+      this_habit = {
+        habit_id: key,
+        habit: HeroicHabit.find(key)[:name],
+        earned: value * habit_points,
+        required: level[:num] != 1 ? level[:required_points] : Level0Point.find(key)[:points]
+      }
+      point_totals.push(this_habit)
+    end
+    point_totals
+  end
+
+  def get_required_challenge_totals(user)
+    required = Challenge.where({level_id: user.level, category: Challenge.categories[:required]}).count()
+    earned = CompleteChallenge.joins(:challenge).where(complete_challenges: {user_id: user[:id]}, challenges: {level_id: user.level, category: Challenge.categories[:required]}).count()
+    {earned: earned, required: required}
+  end
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :screen_name, :password, :password_confirmation)
