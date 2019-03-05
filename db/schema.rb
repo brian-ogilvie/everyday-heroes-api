@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_03_194508) do
+ActiveRecord::Schema.define(version: 2019_03_05_172035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "announcements", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "url"
+    t.string "embed_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "assignments", force: :cascade do |t|
     t.bigint "user_id"
@@ -92,6 +101,16 @@ ActiveRecord::Schema.define(version: 2019_03_03_194508) do
     t.datetime "updated_at", null: false
     t.integer "num"
     t.index ["num"], name: "index_levels_on_num", unique: true
+  end
+
+  create_table "user_announcements", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "announcement_id"
+    t.boolean "delivered", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["announcement_id"], name: "index_user_announcements_on_announcement_id"
+    t.index ["user_id"], name: "index_user_announcements_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

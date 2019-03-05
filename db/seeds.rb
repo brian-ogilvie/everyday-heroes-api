@@ -249,3 +249,26 @@ def create_assignments
 end
 
 create_assignments
+
+Announcement.create([
+  {
+    title: "Welcome, Hero!", 
+    content: "<p>By signing up, you have taken a very important step. You've said aloud that you want to change your life and become the hero that your family, your community, and even the world needs. Welcome!</p><h4>What's next?</h4><p>Over the next 30 days you'll be making gradual, actionable changes in your life by accomplishing small, simple tasks. Every day, check into your <strong>Today</strong> page to see what you need to do.</p><p>The program is divided into Daily Habits, which need to be done every day, and Challenges, which will only need to be done once over the course of the month. On Day 1, there is only your first monthly Challenge. Over the next few days, you'll be introduced to our Five Heroic Habits and begin to practice them daily.</p><p>Welcome, hero!</p>",
+    url: nil,
+    embed_url: "https://www.youtube.com/embed/HblkRJxOMvQ",
+  },
+])
+
+def create_announcements
+  users = User.all
+  users.each do | user |
+    UserAnnouncement.create([
+      {
+        user_id: user[:id],
+        announcement_id: 1
+      },
+    ])
+  end
+end
+
+create_announcements
