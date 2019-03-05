@@ -16,7 +16,6 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, on: :create
 
   def days_active
-    # (Date.today - self[:created_at].to_s.to_date).to_s.split('/')[0].to_i + 1
     ((Time.now - self[:created_at])/1.day).ceil
   end
 

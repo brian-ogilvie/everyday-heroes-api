@@ -38,14 +38,14 @@ class UsersController < ApplicationController
     begin
       if params[:id].to_i == current_user[:id].to_i
         user = current_user
-        user.update(update_user_params)
+        user.update_attributes(update_user_params)
         if user.save
           render json: {user: user.as_json}, status: 200
         else
           render json: {errors: user.errors.full_messages}, status: 400
         end
       else
-        render json: {error: 'Unauthorized'}, status: 401
+        render json: {error: 'Not authorized to update that account'}, status: 401
       end
     rescue ActiveRecord::RecordNotFound
       not_found
@@ -105,11 +105,7 @@ class UsersController < ApplicationController
   end
 
   def update_user_params
-    update_user_params = user_params
-    update_user_params.delete(:password)
-    update_user_params.delete(:password_confirmation)
-    puts update_user_params
-    update_user_params
+    params.require(:user).permit(:id, :first_name, :last_name, :email, :screen_name)
   end
 
   def not_found
