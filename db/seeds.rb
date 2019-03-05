@@ -262,10 +262,12 @@ Announcement.create([
 def create_announcements
   users = User.all
   users.each do | user |
-    UserAnnouncement.create({
-      user_id: user[:id],
-      announcement_id: 1
-    })
+    UserAnnouncement.create([
+      {
+        user_id: user[:id],
+        announcement_id: 1
+      },
+    ])
   end
 end
 
