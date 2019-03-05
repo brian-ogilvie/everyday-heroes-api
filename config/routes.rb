@@ -15,5 +15,6 @@ Rails.application.routes.draw do
 
   resources :users
   get '/users/:id/progress', to: 'users#progress'
+  get '/users/:id', to: 'users#show'
   post '/authenticate', to: 'authentication#authenticate'
 end
