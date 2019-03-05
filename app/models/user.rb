@@ -11,6 +11,9 @@ class User < ApplicationRecord
   has_many :complete_challenges, dependent: :delete_all
   has_many :challenges, through: :complete_challenges
 
+  has_many :user_announcements, dependent: :delete_all
+  has_many :announcements, through: :user_announcements
+
   has_secure_password
   validates :password, presence: true, length: { minimum: 8 }, confirmation: { case_sensitive: true }, on: :create
   validates :password_confirmation, presence: true, on: :create

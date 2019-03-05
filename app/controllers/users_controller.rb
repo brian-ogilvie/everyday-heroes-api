@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     else
       render json: {errors: user.errors.full_messages}
     end
+    welcome_user user[:id]
   end
 
   def update
@@ -118,5 +119,12 @@ class UsersController < ApplicationController
 
   def is_current_user?(user)
     user[:id] == current_user[:id]
+  end
+
+  def welcome_user(user_id)
+    UserAnnouncement.create({
+      user_id: user_id,
+      announcement_id: 1,
+    })
   end
 end

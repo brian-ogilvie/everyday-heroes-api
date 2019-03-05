@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get '/challenges/:id', to: 'challenges#show'
   post '/challenges/', to: 'complete_challenges#create'
 
+  get '/announcements', to: 'user_announcements#new_announcements'
+
   resources :users
   get '/users/:id/progress', to: 'users#progress'
   post '/authenticate', to: 'authentication#authenticate'
