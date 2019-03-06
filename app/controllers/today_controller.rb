@@ -21,7 +21,10 @@ class TodayController < ApplicationController
       assignment[:heroic_habit_id]
     end
     today_tasks = []
-    introduced_habits = HeroicHabit.where("intro_day <= #{current_user.days_active}")
+    introduced_habits = (HeroicHabit
+      .where("intro_day <= #{current_user.days_active}")
+      .order(:intro_day)
+    )
     introduced_habits.each do | habit |
       complete = completed_habit_ids.include?(habit[:id]) ? true : false
       today_tasks.push({
