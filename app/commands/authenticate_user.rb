@@ -16,7 +16,6 @@ class AuthenticateUser
 
   def user
     user = User.find_by_email(email)
-    # user = User.find_for_authentication(:email => email)
     return user if user && user.authenticate(password)
 
     errors.add :user_authentication, 'Invalid credentials'
