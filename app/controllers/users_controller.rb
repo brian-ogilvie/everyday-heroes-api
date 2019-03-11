@@ -81,14 +81,18 @@ class UsersController < ApplicationController
   def get_habit_point_totals(user)
     level = user.level
     habit_points = level[:habit_points]
+    streaks = get_streaks_by_habit(user)
     completions = user.assignments.joins(:daily_task).where(daily_tasks: {level_id: user[:level_id]}).group("daily_tasks.heroic_habit_id").count()
     point_totals = []
     completions.each do | key, value |
+      streak = streaks.select { |el| el[:habit_id] == key}.first
+      streak_code = streak ? streak[:streak_code] : streak_codes[0]
       this_habit = {
         habit_id: key,
         habit: HeroicHabit.find(key)[:name],
         earned: value * habit_points,
-        required: level[:num] != 1 ? level[:required_points] : Level0Point.find(key)[:points]
+        required: level[:num] != 1 ? level[:required_points] : Level0Point.find(key)[:points],
+        streak: streak_code
       }
       point_totals.push(this_habit)
     end
@@ -99,6 +103,34 @@ class UsersController < ApplicationController
     required = Challenge.where({level_id: user.level, category: Challenge.categories[:required]}).count()
     earned = CompleteChallenge.joins(:challenge).where(complete_challenges: {user_id: user[:id]}, challenges: {level_id: user.level, category: Challenge.categories[:required]}).count()
     {earned: earned, required: required}
+  end
+
+  def get_streaks_by_habit(user)
+    start_date = 7.days.ago.beginning_of_day
+    streaks = []
+    completions = user.assignments.joins(:daily_task).where(assignments: {created_at: (start_date..Time.now)}).group("daily_tasks.heroic_habit_id").count()
+    completions.each do | key, value |
+      streak_code = nil
+      case value
+        when 7
+          streak_code = streak_codes[3]
+        when (5..6)
+          streak_code = streak_codes[2]
+        when (1..4)
+          streak_code = streak_codes[1]
+        else
+          streak_code = streak_codes[0]
+      end
+      streaks.push({
+        habit_id: key,
+        streak_code: streak_code
+      })
+    end
+    streaks
+  end
+
+  def streak_codes
+    ["lead", "bronze", "silver", "gold"]
   end
 
   def user_params
