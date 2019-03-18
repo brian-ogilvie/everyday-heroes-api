@@ -36,6 +36,9 @@ class UsersController < ApplicationController
   end
 
   def update
+    if current_user[:access_level] == "guest"
+      render json: {errors: ["Guest Account may not be updated."]} and return
+    end
     begin
       if params[:id].to_i == current_user[:id].to_i
         user = current_user
@@ -46,7 +49,7 @@ class UsersController < ApplicationController
           render json: {errors: user.errors.full_messages}, status: 400
         end
       else
-        render json: {error: 'Not authorized to update that account'}, status: 401
+        render json: {errors: ['Not authorized to update that account']}, status: 401
       end
     rescue ActiveRecord::RecordNotFound
       not_found
@@ -56,6 +59,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    if current_user[:access_level] == "guest"
+      render json: {message: "Guest Account may not be deleted."} and return
+    end
     if params[:id].to_i == current_user[:id].to_i
       User.destroy(params[:id])
       render json: {message: "Your account has been deleted."}

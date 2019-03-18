@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   enum access_level: [:guest, :user, :admin, :super_admin]
 
-
   validates :first_name, presence: true, length: { maximum: 50 }
   validates :last_name, presence: true, length: { maximum: 50 }
   validates :screen_name, presence: true, length: { maximum: 50 }
