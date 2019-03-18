@@ -9,8 +9,8 @@ class AnnouncementsController < ApplicationController
       mark_as_delivered announcements
     rescue ActiveRecord::RecordNotFound
       render json: {error: "Record Not Found"}, status: 404
-    # rescue Exception
-    #   render json: {error: "Internal Server Error"}, status: 500
+    rescue Exception
+      render json: {error: "Internal Server Error"}, status: 500
     end
   end
 
@@ -19,7 +19,7 @@ class AnnouncementsController < ApplicationController
   def mark_as_delivered(announcements)
     announcements.each do |announcement|
       entry = announcement.user_announcements.where({user_id: current_user[:id]}).first
-      if entry
+      if entry && entry.announcement_id != 2
         entry.update_attributes({delivered: true})
       end
     end
